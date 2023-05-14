@@ -10,6 +10,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^2.0.17"
+    "astro": "^2.0.17",
+    "microcms-js-sdk": "^2.4.0"
   }
 }
