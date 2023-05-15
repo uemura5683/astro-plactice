@@ -3,7 +3,13 @@ import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 
 import { getBlogs } from "../library/microcms";
-const response = await getBlogs({ fields: ["id", "title"] });
+const response = await getBlogs({ fields: ["id", "title", "image", "date"] });
+import moment from "moment";
+
+let setdate = function (str:any) {
+    return moment(str).utc().format('YYYY-MM-DD');
+};
+
 ---
 
 <Layout title="Welcome to Astro.">
@@ -15,9 +21,15 @@ const response = await getBlogs({ fields: ["id", "title"] });
 		<ul role="list" class="link-card-grid">
 			{
 				response.contents.map((content: any) => (
-				<li>
-					<a href={content.id}>{content.title}</a>
-				</li>
+					<li>
+						<a href={content.id}>
+							<figure>
+								<img src={content.image.url}>
+								<p class="title">{content.title}</p>
+								<p class="date">{setdate(content.date)}</p>
+							</figure>
+						</a>
+					</li>
 				))
 			}
 		</ul>
@@ -63,11 +75,14 @@ const response = await getBlogs({ fields: ["id", "title"] });
 	}
 	.link-card-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+		grid-template-columns: calc(50% - 0.5rem) 1fr;
 		gap: 1rem;
 		padding: 0;
 	}
 	.link-card-grid li {
 		list-style-type: none;
+	}
+	.link-card-grid .title {
+		margin: 5px 0 10px;
 	}
 </style>
