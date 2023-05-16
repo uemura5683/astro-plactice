@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+---
+
+<Layout title="Welcome to Astro.">
+	<main>
+		<div>
+			<h1>Contact us</h1>
+			<form action="https://uemura5683.form.newt.so/v1/gst_-uEPr" method="post">
+				<label for="name">Name</label>
+				<input id="name" name="name" />
+				<label for="email">Email</label>
+				<input id="email" name="email" type="email" />
+				<label for="message">Message</label>
+				<textarea id="message" name="message"></textarea>
+				<button type="submit">Submit</button>
+			</form>
+		</div>
+	</main>
+</Layout>
+
+<style>
+	main {
+		margin: auto;
+		padding: 1.5rem;
+		max-width: 60ch;
+	}
+	h1 {
+		font-size: 3rem;
+		font-weight: 800;
+		margin: 0;
+	}
+	form {
+		margin: 10px 0 0;
+	}
+	input, button {
+		height: 40px;
+	}
+	textarea {
+		height: 100px;
+	}
+	label, input, textarea, button{
+		display: block;
+		width: 100%;
+		margin: 0 0 10px;
+	}
+</style>
