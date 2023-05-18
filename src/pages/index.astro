@@ -4,8 +4,11 @@ import Card from '../components/Card.astro';
 
 import { getBlogs } from "../library/microcms";
 const response = await getBlogs({ fields: ["id", "title", "image", "date"] });
-import moment from "moment";
 
+import { getProduct } from "../library/getskill";
+const response_skill = await getProduct();
+
+import moment from "moment";
 let setdate = function (str:any) {
     return moment(str).utc().format('YYYY-MM-DD');
 };
@@ -30,6 +33,18 @@ let setdate = function (str:any) {
 				))
 			}
 		</ul>
+
+		<ul role="list" class="link-card-grid">
+			{
+				response_skill.map((content: any) => (
+					<li class="link-card">
+						<img src={content.image}>
+						<h2>{content.name}</h2>
+					</li>
+				))
+			}
+		</ul>
+
 	</main>
 </Layout>
 
